@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Hasnain Waseem Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Caveat:wght@600&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: lesson-plan page. Left-aligned, one column of reading with a photo pinned beside the hero.
+   Boldness lives in one place: whiteboard-marker handwriting for the tagline and margin notes. */
+:root{
+  --bg:#F4F7FB; --surface:#FFFFFF; --ink:#0F1F3A; --muted:#4F5F7A; --line:#D3DDEB;
+  --accent:#1E4DD7; --on-accent:#FFFFFF; --accent-soft:#E4ECFD; --marker:#B8322A; --ok:#1F7A4D;
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"Public Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-marker:"Caveat","Comic Sans MS","Bradley Hand",cursive;
+  --gutter:max(16px,env(safe-area-inset-left,0px));
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0B1424; --surface:#121E33; --ink:#E8EEF8; --muted:#9DAEC8; --line:#243452;
+  --accent:#86A8FF; --on-accent:#0B1424; --accent-soft:#17274A; --marker:#FF9A8B; --ok:#6FD3A0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0B1424; --surface:#121E33; --ink:#E8EEF8; --muted:#9DAEC8; --line:#243452;
+  --accent:#86A8FF; --on-accent:#0B1424; --accent-soft:#17274A; --marker:#FF9A8B; --ok:#6FD3A0; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.65 var(--f-body);-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+h1,h2,h3{font-family:var(--f-display);line-height:1.1;margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0 0 1em;max-width:66ch}
+ul,ol{margin:0;padding:0}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+.wrap{width:100%;max-width:1120px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:72px;border-top:1px solid var(--line)}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 20px;margin-bottom:28px}
+.sec-head h2{font-size:clamp(1.9rem,4.4vw,2.8rem);font-weight:800}
+.note{font-family:var(--f-marker);font-size:1.45rem;color:var(--marker);transform:rotate(-2deg);display:inline-block}
+.lead{color:var(--muted);max-width:62ch;margin-bottom:28px}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:24px;min-height:56px}
+.brand{font:700 1.05rem/1 var(--f-display);color:var(--ink);text-decoration:none;white-space:nowrap}
+nav.main{display:flex;gap:4px;overflow-x:auto;min-width:0;flex:1;scrollbar-width:none}
+nav.main::-webkit-scrollbar{display:none}
+nav.main a{padding:8px 12px;border-radius:999px;color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:500;white-space:nowrap}
+nav.main a:hover{background:var(--accent-soft);color:var(--ink)}
+
+/* hero */
+.hero{padding-block:56px 72px;border-top:0}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:48px;align-items:start}
+.hero h1{font-size:clamp(2.8rem,8vw,5.6rem);font-weight:800;letter-spacing:-.03em;line-height:.98}
+.roles{display:flex;flex-wrap:wrap;gap:6px 0;margin:18px 0 0;padding:0;list-style:none;font-weight:600;color:var(--muted)}
+.roles li{padding-right:14px;margin-right:14px;border-right:2px solid var(--line)}
+.roles li:last-child{border-right:0;margin-right:0;padding-right:0}
+.tagline{font-family:var(--f-marker);font-size:clamp(1.9rem,4.5vw,2.7rem);line-height:1.1;color:var(--marker);margin:30px 0 22px;transform:rotate(-1.2deg);max-width:18ch}
+.hero-photo{margin:0;position:relative}
+.hero-photo img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--line);aspect-ratio:1/1;object-fit:cover;object-position:50% 20%}
+.hero-photo figcaption{font-family:var(--f-marker);font-size:1.3rem;color:var(--marker);margin-top:8px;transform:rotate(-1.5deg)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:56px 0 0;border-top:2px solid var(--ink)}
+.stats div{padding:16px 16px 4px 0}
+.stats div+div{padding-left:16px;border-left:1px solid var(--line)}
+.stats dt{order:2;color:var(--muted);font-size:.88rem}
+.stats dd{margin:0;font:800 clamp(1.9rem,4vw,2.8rem)/1 var(--f-display);font-variant-numeric:tabular-nums}
+.stats div{display:flex;flex-direction:column;gap:6px}
+.philosophy{margin:64px 0 0;padding:0;max-width:30ch}
+.philosophy p{font:500 clamp(1.5rem,3.4vw,2.3rem)/1.22 var(--f-display);margin:0 0 14px;max-width:none;text-wrap:balance}
+.philosophy cite{font-style:normal;color:var(--muted);font-size:.92rem}
+
+/* about */
+.two{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:48px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none}
+.chips li{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-size:.92rem}
+h3{font-size:1.25rem;font-weight:700;margin-bottom:12px}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin:0;border-top:2px solid var(--ink)}
+.facts div{padding:14px 12px 14px 0;border-bottom:1px solid var(--line)}
+.facts dt{color:var(--muted);font-size:.85rem}
+.facts dd{margin:2px 0 0;font-weight:600}
+
+/* placement */
+.cols3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-bottom:48px}
+.cols3 article{border-top:2px solid var(--ink);padding-top:14px}
+.cols3 p{margin:0;color:var(--muted)}
+.host-photo{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--line);margin-bottom:16px}
+.resp-obj{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px}
+.plain{list-style:none;display:grid;gap:10px}
+.plain li{padding-left:22px;position:relative}
+.plain li::before{content:"";position:absolute;left:0;top:.7em;width:10px;height:2px;background:var(--accent)}
+ol.obj{list-style:none;counter-reset:o;display:grid;gap:12px}
+ol.obj li{counter-increment:o;padding-left:40px;position:relative}
+ol.obj li::before{content:counter(o);position:absolute;left:0;top:-2px;width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font:700 .9rem/28px var(--f-display);text-align:center}
+
+/* logbook */
+.filters{display:flex;flex-wrap:wrap;gap:8px 24px;margin-bottom:12px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{font:500 .9rem var(--f-body);border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer}
+.pill[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.count{color:var(--muted);font-size:.9rem;margin:0 0 16px}
+.log-head,.log-row{display:grid;grid-template-columns:130px minmax(0,1.5fr) minmax(0,1fr) 96px;gap:24px}
+.log-head{padding:10px 0;border-bottom:2px solid var(--ink);font-size:.85rem;color:var(--muted);font-weight:600}
+.log-row{padding:22px 0;border-bottom:1px solid var(--line)}
+.log-row .when b{display:block;font:700 1.05rem/1.2 var(--f-display)}
+.log-row .when span{color:var(--muted);font-size:.9rem}
+.log-row ul{list-style:none;display:grid;gap:6px;font-size:.95rem}
+.log-row ul li{padding-left:14px;position:relative}
+.log-row ul li::before{content:"";position:absolute;left:0;top:.72em;width:6px;height:2px;background:var(--muted)}
+.log-row .skills li{color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tag{font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;background:var(--accent-soft);color:var(--accent)}
+.hrs{font-variant-numeric:tabular-nums;font-weight:600}
+.lab{display:none}
+
+/* evidence */
+.week{padding-block:40px;border-top:1px solid var(--line)}
+.week:first-of-type{border-top:2px solid var(--ink)}
+.week-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-bottom:20px}
+.week-head h3{font-size:1.6rem;margin:0}
+.week-head p{margin:0;color:var(--muted)}
+.sub{font-size:.9rem;font-weight:600;color:var(--muted);margin:22px 0 10px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:12px}
+.shot{margin:0}
+.shot button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;border-radius:6px;overflow:hidden;position:relative}
+.shot img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--line);border-radius:6px;transition:transform .3s}
+.shot button:hover img{transform:scale(1.03)}
+.shot figcaption{font-size:.88rem;color:var(--muted);margin-top:6px}
+.empty{border:2px dashed var(--line);border-radius:6px;padding:22px;color:var(--muted);font-size:.92rem;max-width:480px}
+
+/* journals */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.panel{border-top:2px solid var(--ink);padding-top:20px;max-width:760px}
+.panel h3{font-size:1.5rem}
+.panel .meta{color:var(--muted);margin:6px 0 18px}
+.panel h4{font:700 1rem/1.3 var(--f-display);margin:24px 0 8px;color:var(--accent)}
+.panel .todo{border:2px dashed var(--line);border-radius:6px;padding:18px;color:var(--muted)}
+
+/* project */
+.proj-title{font-size:clamp(2.2rem,6vw,4rem);font-weight:800;letter-spacing:-.025em}
+.proj-sub{font-size:1.2rem;color:var(--muted);margin:10px 0 28px}
+.badge{display:inline-block;background:var(--accent);color:var(--on-accent);font-weight:600;font-size:.9rem;padding:6px 14px;border-radius:999px;margin-bottom:20px}
+.timeline{list-style:none;border-left:2px solid var(--ink);margin:0 0 0 6px;padding:0 0 0 22px;display:grid;gap:18px}
+.timeline li{position:relative}
+.timeline li::before{content:"";position:absolute;left:-29px;top:.45em;width:12px;height:12px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
+.timeline b{display:block;font-family:var(--f-display)}
+.timeline span{color:var(--muted);font-size:.92rem}
+.proj-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:56px}
+.proj-grid h3{margin-top:28px}
+.proj-grid h3:first-child{margin-top:0}
+
+/* contact */
+.contact-box{border-top:2px solid var(--ink);padding-top:24px;display:grid;gap:14px;max-width:640px}
+.contact-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.contact-row .label{width:92px;color:var(--muted);font-size:.9rem}
+.contact-row .val{font-weight:600;overflow-wrap:anywhere;min-width:0}
+.btn{font:600 .9rem var(--f-body);border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);padding:8px 16px;border-radius:999px;cursor:pointer;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--accent)}
+footer{border-top:1px solid var(--line);padding-block:32px;color:var(--muted);font-size:.9rem}
+
+/* polish */
+.stats{grid-template-columns:repeat(2,minmax(0,240px))}
+.hero-contact{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:6px;font-weight:600}
+.hero-contact span{overflow-wrap:anywhere;min-width:0}
+#logbook .stats{margin:0 0 28px}
+@media (max-width:640px){.connect-btn{display:none}}
+.theme-btn{font:500 .85rem var(--f-body);border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;flex:none}
+.theme-btn:hover{background:var(--accent-soft)}
+nav.main a.active{background:var(--accent-soft);color:var(--ink);font-weight:600}
+.tagline{position:relative}
+.tagline .ghost{visibility:hidden}
+.tagline .typed{position:absolute;left:0;top:0;width:100%}
+.tagline .typed::after{content:"";display:inline-block;width:2px;height:.85em;background:currentColor;margin-left:3px;vertical-align:-.08em;animation:blink 1s steps(1) infinite}
+.tagline.done .typed::after{display:none}
+@keyframes blink{50%{opacity:0}}
+.reveal{transition:opacity .6s ease,transform .6s ease}
+.js-reveal .reveal:not(.in){opacity:0;transform:translateY(14px)}
+.to-top{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:25;font:600 .85rem var(--f-body);background:var(--accent);color:var(--on-accent);border:0;border-radius:999px;padding:10px 16px;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .25s,transform .25s}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal,.to-top{transition:none}}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:50;background:rgba(5,10,20,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lb img{max-width:100%;max-height:76vh;object-fit:contain;border-radius:6px}
+.lb p{color:#fff;margin:0;text-align:center;max-width:70ch}
+.lb .ctl{display:flex;gap:10px}
+.lb button{font:600 .95rem var(--f-body);background:#fff;color:#0F1F3A;border:0;border-radius:999px;padding:9px 18px;cursor:pointer}
+
+@media (max-width:860px){
+  .hero-grid,.two,.proj-grid,.resp-obj{grid-template-columns:minmax(0,1fr);gap:36px}
+  .cols3{grid-template-columns:minmax(0,1fr);gap:24px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats div:nth-child(3){padding-left:0;border-left:0}
+  .stats div:nth-child(n+3){border-top:1px solid var(--line);margin-top:12px;padding-top:16px}
+  .hero-photo img{aspect-ratio:1/1;max-width:360px;object-position:50% 20%}
+  .log-head{display:none}
+  .log-row{grid-template-columns:minmax(0,1fr);gap:12px}
+  .lab{display:block;font-size:.8rem;font-weight:600;color:var(--muted);margin-bottom:6px}
+  section{padding-block:56px}
+}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">Hasnain Waseem</a>
+    <nav class="main" aria-label="Sections">
+      <a href="#top">Overview</a><a href="#about">About</a><a href="#placement">Placement</a><a href="#evidence">Evidence</a><a href="#logbook">Logbook</a>
+      <a href="#journals">Journals</a><a href="#project">Skit project</a><a href="#final">Final Assessment</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="btn connect-btn" href="#contact" style="flex:none">Connect</a>
+    <button type="button" class="theme-btn" id="themeBtn">Dark mode</button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <h1>Hasnain Waseem</h1>
+        <ul class="roles">
+          <li>English Language Instructor</li><li>Applied Linguistics Undergraduate</li><li>Teaching Intern</li>
+        </ul>
+        <p class="tagline" id="tagline">Where Linguistic Knowledge Meets Meaningful Teaching</p>
+        <p>Welcome to my professional teaching e-portfolio, a reflection of my journey as an English Language Teaching Intern at the Pakistan American Cultural Center (PACC), Hyderabad.</p>
+        <p>I am an undergraduate student of BS Applied Linguistics at the University of Sindh, Jamshoro. My academic interests include English Language Teaching (ELT), Second Language Acquisition (SLA), communicative language teaching, classroom interaction, and learner-centred pedagogy.</p>
+        <p>From 14 September to 17 October 2026, I completed my teaching internship with the English Language Program (ELP), working with Pre-Beginner learners. This experience allowed me to transform linguistic theories into practical classroom strategies through grammar instruction, interactive activities, assessments, classroom observation, and creative performance.</p>
+      <div class="hero-contact" id="heroContact"></div>
+      </div>
+      <figure class="hero-photo">
+        <img src="images/profile.jpg" alt="Portrait of Hasnain Waseem in a black suit and tie">
+      </figure>
+    </div>
+
+    <dl class="stats" id="stats"></dl>
+
+    <blockquote class="philosophy">
+      <p>“A meaningful classroom is not merely a place where language is explained; it is a space where learners discover the confidence to use it.”</p>
+      <cite>My teaching philosophy</cite>
+    </blockquote>
+    <p style="margin-top:36px;color:var(--muted)">This portfolio documents my teaching experiences, professional development, instructional strategies, student engagement, reflective learning, and achievements throughout the internship.</p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><h2>About Me</h2><span class="note">An Aspiring English Language Instructor</span></div>
+    <div class="two">
+      <div>
+        <p>I am Hasnain Waseem, a BS Applied Linguistics undergraduate at the University of Sindh, Jamshoro, with a growing interest in English Language Teaching and educational development.</p>
+        <p>My academic journey has introduced me to language acquisition, grammar, sociolinguistics, language teaching methodologies, and the relationship between language and communication. Through my teaching internship at PACC Hyderabad, I had the opportunity to apply this theoretical understanding in an authentic classroom environment.</p>
+        <p>I believe that language learning should be interactive, inclusive, and purposeful. Rather than relying entirely on traditional lectures, I encourage students to learn through communication, collaboration, movement, creativity, and practical activities.</p>
+        <p>My goal as an aspiring educator is to make English language learning accessible, enjoyable, and meaningful while continuously improving my own professional competence.</p>
+      </div>
+      <div>
+        <h3>Areas of academic and professional interest</h3>
+        <ul class="chips">
+          <li>English Language Teaching (ELT)</li><li>Communicative Language Teaching (CLT)</li><li>Second Language Acquisition (SLA)</li>
+          <li>Classroom Interaction and Learner Engagement</li><li>Grammar and Vocabulary Instruction</li>
+          <li>Language Assessment and Evaluation</li><li>Activity-Based and Performance-Based Learning</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="placement">
+  <div class="wrap">
+    <div class="sec-head"><h2>Internship Placement and Institutional Overview</h2></div>
+    <dl class="facts" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));margin-bottom:48px">
+      <div><dt>Host Institution</dt><dd>Pakistan American Cultural Center (PACC), Hyderabad</dd></div>
+      <div><dt>Department</dt><dd>English Language Program (ELP)</dd></div>
+      <div><dt>Internship Role</dt><dd>English Language Teaching Intern</dd></div>
+      <div><dt>Assigned Level</dt><dd>Pre-Beginners</dd></div>
+      <div><dt>Internship Period</dt><dd>14 September – 17 October 2026</dd></div>
+      <div><dt>Academic Institution</dt><dd>University of Sindh, Jamshoro</dd></div>
+      <div><dt>Academic Program</dt><dd>BS Applied Linguistics</dd></div>
+    </dl>
+    <div class="cols3">
+      <article>
+        <img class="host-photo" src="images/pacc.jpg" alt="Hasnain Waseem standing beside the PACC, Pakistan American Cultural Center logo">
+        <h3>About the Host Institution</h3>
+        <p>Established in 1959, the Pakistan American Cultural Center (PACC), Hyderabad, has been serving the community for over six decades, promoting English language education, cultural exchange, and educational development. The institution provides educational and language-learning opportunities through its English Language Program and other skill-development courses.</p>
+      </article>
+      <article>
+        
+        <p>I was assigned to teach a Pre-Beginners English language class, delivering grammar lessons, facilitating speaking and listening activities, preparing classroom exercises, assessing student learning, and supporting learners in developing basic English communication skills.</p>
+      </article>
+      <article>
+        
+        <p>I also observed experienced teachers, participated in professional discussions with institutional management, and organized a performance-based language-learning project.</p>
+      </article>
+    </div>
+    <div class="resp-obj">
+      <div>
+        <h3>Internship Objectives</h3>
+        <ol class="obj">
+          <li>Apply theoretical knowledge of Applied Linguistics to practical English language instruction.</li>
+          <li>Develop effective classroom management and instructional communication skills.</li>
+          <li>Implement learner-centred and communicative teaching strategies.</li>
+          <li>Assess students’ grammatical knowledge and language development.</li>
+          <li>Reflect critically on classroom experiences and improve professional teaching practices.</li>
+          <li>Build students’ confidence through collaborative and creative language-learning activities.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="evidence">
+  <div class="wrap">
+    <div class="sec-head"><h2>Weekly Classroom Evidence</h2></div>
+    <div id="weeks"></div>
+  </div>
+</section>
+
+<section id="logbook">
+  <div class="wrap">
+    <div class="sec-head"><h2>Daily Internship Logbook</h2></div>
+    <p class="lead">This section presents a chronological record of my teaching internship at PACC Hyderabad from 14 September to 17 October 2026. The logbook documents instructional activities, classroom observations, teaching strategies, student assessments, professional meetings, performance preparation, and the pedagogical skills developed throughout the internship. Each entry includes: Day and Date, Activities Performed, Skills Developed, Hours Logged, and Supporting Evidence, where available. The logbook reflects my practical engagement with English Language Teaching and my continuous professional development as an Applied Linguistics undergraduate.</p>
+    <dl class="stats"></dl>
+    <div class="filters">
+      <div class="pills" id="weekFilter" role="group" aria-label="Filter by week"></div>
+    </div>
+    <div class="log-head" aria-hidden="true"><span>Day and date</span><span>Activities performed</span><span>Skills developed</span><span>Hours</span></div>
+    <div id="logRows"></div>
+  </div>
+</section>
+
+<section id="journals">
+  <div class="wrap">
+    <div class="sec-head"><h2>Weekly Reflective Journals</h2><span class="note">Learning Through Experience</span></div>
+    <p class="lead">Reflective practice was an essential component of my teaching internship. Through five weekly reflections, I critically examined my instructional decisions, classroom experiences, students’ learning needs, and professional development. These reflections document my progression from initial classroom instruction and observation to independent lesson delivery, language assessment, performance-based teaching, and final professional evaluation. They show how continuous observation, practical experience, and self-evaluation contributed to my development as a prospective English language instructor.</p>
+    <div class="tabs" id="jTabs" role="tablist" aria-label="Weekly reflections"></div>
+    <div class="panel" id="jPanel" role="tabpanel"></div>
+  </div>
+</section>
+
+<section id="project">
+  <div class="wrap">
+    <div class="sec-head"><h2>Featured Teaching Project</h2></div>
+    <span class="badge">Performed on 15 October 2026</span>
+    <h3 class="proj-title">The Great Summer Load-Shedding</h3>
+    <p class="proj-sub">Integrating language, creativity, and performance</p>
+    <div>
+      <div>
+        <p>One of the most memorable achievements of my internship was organizing an English-language skit entitled <i>The Great Summer Load-Shedding</i>, performed by my Pre-Beginners students on 15 October 2026.</p>
+        <p>The project was designed to encourage practical English communication through an entertaining and culturally familiar situation. The story portrayed a Pakistani family’s humorous experiences during a summer electricity outage.</p>
+        <h3>My role and responsibilities</h3>
+        <p>As the class teacher, I contributed to the development of the script, distribution of student roles, dialogue preparation, pronunciation practice, rehearsal coordination, and final stage presentation. I also served as the narrator, allowing students to concentrate on their assigned characters and spoken dialogues.</p>
+        <h3>Pedagogical objectives</h3>
+        <ul class="plain" style="margin-bottom:1em">
+          <li>Improve spoken English through meaningful dialogue.</li>
+          <li>Strengthen pronunciation, fluency, and expressive communication.</li>
+          <li>Encourage teamwork and collaborative learning.</li>
+          <li>Develop confidence in public speaking.</li>
+          <li>Apply classroom language learning to an authentic performance task.</li>
+        </ul>
+        <h3>Outcome and reflection</h3>
+        <p>The final performance was successfully presented before an audience and received appreciation from the teaching faculty. For me, the most rewarding aspect was witnessing students confidently deliver their dialogues and participate in a shared creative achievement.</p>
+        <p>This experience demonstrated that language learning can extend beyond textbooks and examinations. Drama and performance can provide meaningful opportunities for students to practise English, overcome hesitation, and develop communicative competence.</p>
+      </div>
+    </div>
+    <h3 style="margin-top:56px">Performance photos</h3>
+    <div id="skitGallery"></div>
+  </div>
+</section>
+
+<section id="final">
+  <div class="wrap">
+    <div class="sec-head"><h2>Final Assessment</h2></div>
+    <div id="finalGallery"></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head"><h2>Contact</h2></div>
+    <div class="contact-box" id="contactBox"></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">Hasnain Waseem</div>
+</footer>
+
+<button type="button" class="to-top" id="toTop" aria-label="Back to top">Top</button>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <img id="lbImg" alt="">
+  <p id="lbCap"></p>
+  <div class="ctl"><button type="button" id="lbPrev">Previous</button><button type="button" id="lbNext">Next</button><button type="button" id="lbClose">Close</button></div>
+</div>
+
+<script>
+/* ---------- Contact details: fill these in and republish ---------- */
+const CONTACT = { email: "hasnainbhatti960@gmail.com", phone: "03208762205", linkedin: "" };
+
+/* ---------- Logbook data (from the internship daily log) ---------- */
+const E = (d, w, a, s) => ({ d, w, a: a.split("|"), s: s.split("|") });
+const LOG = [
+ E("2026-09-14",1,"Delivered a two-hour lesson on nouns|Taught common, proper, singular, and plural nouns|Conducted pair-speaking activities|Conducted writing practice|Conducted textbook-based listening tasks|Observed Sir Ahmed’s ELP class for one hour|Prepared an academic teaching observation report","Grammar instruction and lesson delivery|Integration of speaking, writing, and listening skills|Classroom observation and analytical reporting|Understanding of teaching strategies and classroom interaction"),
+ E("2026-09-15",1,"Teaching Present Simple Tense|Teaching the phrase “Like to”|Capitalization rules: sentence beginnings|Textbook-based listening task|Speaking practice using “Like to”|Meeting with the PACC Hyderabad Manager|Discussion of classroom management strategies and diverse learner needs","Grammar instruction|Listening and speaking skills development|Written-language conventions|Classroom management strategies|Learner behaviour management|Professional communication"),
+ E("2026-09-16",1,"Teaching Be Verbs: Is, Am, Are|Fill-in-the-blanks classwork|Punctuation: Full Stop (.)|Listening practice|Speaking practice|Classroom Observation: Sir Shaheer Khan, Senior ELP Instructor|Academic report preparation|Observation of classroom management and lesson delivery strategies","Grammar instruction|Teaching basic sentence structures|Punctuation instruction|Listening and speaking skills development|Classroom observation and report writing|Instructional strategy analysis"),
+ E("2026-09-17",1,"Teaching Subject Pronouns|Fill-in-the-blanks classwork: Subject Pronouns|Present Simple Tense: third-person singular|Verb forms: -s, -es, -ies|Listening practice|Speaking practice|Classroom Observation: Sir Nahyan Akhtar, Senior ELP Instructor|Academic report preparation|Observation of accent, pronunciation, and lesson delivery","Grammar instruction|Subject–verb agreement|Listening and speaking skills development|Classroom observation and report writing|Pronunciation awareness|Instructional strategy analysis"),
+ E("2026-09-18",1,"Reading comprehension|Teaching Object Pronouns|Oral drilling: everyday English sentences|Meeting with the Officer In-Charge (OIC)|Level 6 classroom engagement|Learner interaction and classroom support","Reading comprehension instruction|Grammar teaching|Spoken English fluency practice|Classroom management|Learner engagement|Professional communication"),
+ E("2026-09-21",2,"Teaching Articles: A, An, The|Fill-in-the-blanks: articles practice|Writing task: Weekly Play Diary Project|Classroom activity: Silent Guessing Game|Meeting with the OIC","Grammar instruction|Written communication|Vocabulary development|Activity-based learning|Classroom engagement|Professional communication"),
+ E("2026-09-22",2,"Vocabulary: parts of a bird’s body|Demonstrative Pronouns: This, That, These, Those|Reading practice|Oral drilling: everyday English sentences|Classroom Observation: Sir Shaheer Khan, Senior ELP Instructor|Observation of teaching strategies","Vocabulary instruction|Grammar teaching|Reading skills development|Spoken English practice|Classroom observation|Instructional skills development"),
+ E("2026-10-23",2,"Teaching Countable and Uncountable Nouns|Worksheet-based grammar practice|Speaking task: This, That, These, Those|Written practice|Research and selection of the final project skit title","Grammar instruction|Worksheet-based assessment|Speaking and writing skills development|Lesson planning|Creative research|Educational activity development"),
+ E("2026-09-24",2,"Vocabulary: colours of the rainbow|Teaching Possessive Adjectives|Oral drilling: Possessive Adjectives|Pair activity: My Favourite Things|Final project: skit script development|Scriptwriting: The Great Summer Load-Shedding","Vocabulary instruction|Grammar teaching|Pronunciation and oral practice|Pair work facilitation|Creative writing and script development|Communicative Language Teaching"),
+ E("2026-09-25",2,"Teaching Adjectives|Classroom speaking activity|Debate: Village Life vs. City Life|Recreational activity: Whispering Game|Final project: The Great Summer Load-Shedding|Dialogue memorisation and skit rehearsal","Grammar instruction|Oral communication|Critical thinking and argumentation|Listening and speaking skills|Creative language learning|Script development and performance preparation"),
+ E("2026-09-28",3,"Teaching Adverbs|Punctuation: Question Mark (?)|Formation of interrogative sentences|Grammar-based classroom activities|Reading comprehension practice|Final project: The Great Summer Load-Shedding, skit rehearsal and dialogue practice","Grammar instruction|Sentence construction and punctuation|Reading comprehension instruction|Activity-based language teaching|Pronunciation and speaking skills development|Performance-based language learning"),
+ E("2026-09-29",3,"ESL activity-based learning session|Vocabulary development: Word Chain Game|Sentence construction: Sentence-Making Box activity|Interactive language learning games|Final project: The Great Summer Load-Shedding|Skit rehearsal and dialogue practice","Activity-based language teaching|Vocabulary instruction|Sentence construction skills|Communicative Language Teaching|Classroom engagement and management|Speaking and pronunciation instruction"),
+ E("2026-09-30",3,"Comprehensive revision of previously taught grammar topics|Grammar reinforcement and review|Final project: The Great Summer Load-Shedding, skit rehearsal and dialogue practice","Grammar reinforcement techniques|Revision and review strategies|Classroom facilitation|Speaking and pronunciation instruction|Performance-based language teaching|Learner engagement"),
+ E("2026-10-01",3,"Midterm English Language Assessment (two-hour session)|Assessment supervision and classroom management|Final project: The Great Summer Load-Shedding|Skit dialogue rehearsal and speaking practice","Language assessment administration|Classroom supervision|Assessment management|Speaking and pronunciation instruction|Performance-based language teaching|Learner engagement"),
+ E("2026-10-02",3,"Midterm assessment results day|Examination paper checking|Evaluation of students’ written responses|Grammar and language accuracy assessment|Identification of learners’ errors","Language assessment and evaluation|Error analysis|Academic performance evaluation|Assessment literacy|Attention to detail"),
+ E("2026-10-05",4,"Teaching Present Continuous Tense|Running Dictation activity: Present Continuous Tense|Everyday English vocabulary instruction|Interactive grammar and vocabulary practice|Final project: The Great Summer Load-Shedding|Skit rehearsal and dialogue practice","Grammar instruction|Activity-based language teaching|Listening and writing skills development|Vocabulary instruction|Communicative Language Teaching|Speaking and pronunciation instruction|Classroom engagement"),
+ E("2026-10-06",4,"Teaching Exclamatory Sentences|Worksheet-based grammar practice|Present Continuous Tense reinforcement|Exclamatory sentence construction|Teaching English idioms|Final project: The Great Summer Load-Shedding|Skit rehearsal and dialogue practice","Grammar and sentence structure instruction|Worksheet-based language assessment|Idiomatic vocabulary instruction|Activity-based language teaching|Speaking and pronunciation development|Performance-based language learning|Classroom engagement and management"),
+ E("2026-10-07",4,"Teaching Prepositions: In, On, At|Worksheet-based grammar practice|Rapid-fire drilling: prepositional sentences|Interactive speaking and grammar reinforcement|Final project: The Great Summer Load-Shedding|Auditorium-based skit rehearsal|Dialogue delivery and stage practice","Grammar instruction|Prepositional usage and sentence construction|Activity-based language teaching|Oral fluency and pronunciation development|Classroom engagement|Performance-based language teaching|Stage communication and presentation skills"),
+ E("2026-10-08",4,"Teaching the use of There|English spelling practice activity|Pair-based speaking activity|Topic-based discussions using There and prepositions|Grammar reinforcement through communicative practice|Final project: The Great Summer Load-Shedding|Skit rehearsal and dialogue practice","Grammar instruction|Vocabulary and spelling development|Communicative Language Teaching|Pair work facilitation|Spoken English fluency development|Collaborative learning|Performance-based language teaching"),
+ E("2026-10-09",4,"Projector-based surprise assessment|Teaching Simple Past Tense|Oral drilling: Simple Past Tense|Fill-in-the-blanks grammar activity|Interactive grammar reinforcement|Final project: The Great Summer Load-Shedding|Auditorium-based skit rehearsal|Dialogue delivery and stage practice","Technology-enhanced language assessment|Grammar instruction|Oral drilling and pronunciation practice|Formative assessment techniques|Activity-based language teaching|Performance-based language learning|Classroom engagement and management"),
+ E("2026-10-12",5,"Teaching Modal Verb: Can|Affirmative and negative sentence construction|Oral drilling: sentences using Can|Group-based speaking activity|Communicative grammar practice|Final project: The Great Summer Load-Shedding|Skit rehearsal and dialogue practice","Grammar and modal verb instruction|Sentence construction techniques|Communicative Language Teaching|Group activity facilitation|Oral fluency and pronunciation development|Collaborative language learning|Performance-based language teaching"),
+ E("2026-10-13",5,"Revision of Simple Present Tense|Third-person singular verb forms: -s, -es, -ies|Speaking activity: Present Simple Tense|Oral drilling and sentence formation|Interactive ESL activity: Yes/No Questions Game|Final project: The Great Summer Load-Shedding|Skit rehearsal and dialogue practice","Grammar instruction and reinforcement|Subject–verb agreement|Communicative Language Teaching|Oral fluency and pronunciation development|Game-based language learning|Classroom interaction and engagement|Performance-based language teaching"),
+ E("2026-10-14",5,"Comprehensive revision of the entire English Language coursebook|Review of previously taught grammar and vocabulary topics|Final examination preparation|Grammar reinforcement and knowledge consolidation|Final project: The Great Summer Load-Shedding, skit rehearsal and dialogue practice","Revision and reinforcement strategies|Grammar and vocabulary instruction|Examination preparation techniques|Classroom facilitation|Speaking and pronunciation development|Performance-based language teaching|Learner confidence building"),
+ E("2026-10-15",5,"Final Project Presentation: The Great Summer Load-Shedding|Students’ live skit performance|English dialogue delivery and stage presentation|Performance-based language learning|Students’ speaking and communication skills demonstration|Positive feedback and appreciation from faculty members","Performance-based language teaching|Event coordination and classroom leadership|Speaking and pronunciation assessment|Student motivation and confidence building|Communicative Language Teaching|Professional and interpersonal communication"),
+ E("2026-10-16",5,"Pre-Beginners final English language assessment|Final examination supervision|Evaluation of students’ answer scripts|Assessment of grammar, vocabulary, and language proficiency|Examination paper checking|Final result compilation and preparation","Language assessment and evaluation|Examination administration|Error analysis and identification|Academic performance evaluation|Result compilation and documentation|Assessment literacy"),
+ E("2026-10-19",5,"Pre-Beginners final result announcement|Certificate distribution ceremony|Final meeting with the Officer In-Charge (OIC)|Internship performance review and feedback|Professional appreciation and recognition|Internship certificate awarded","Professional communication|Academic result management|Student recognition and motivation|Reflective teaching practice|Professional feedback and evaluation|Interpersonal communication|Professional development")
+];
+const HOURS_PER_DAY = 3;
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const parse = s => { const [y,m,d] = s.split("-").map(Number); return new Date(Date.UTC(y,m-1,d)); };
+const fmt = s => { const t = parse(s); return { day: t.getUTCDate(), mon: MON[t.getUTCMonth()], dow: DOW[t.getUTCDay()] }; };
+const TAGS = [
+  ["Observation", /observ/i],
+  ["Assessment", /assessment|examination|answer scripts/i],
+  ["Skit project", /Load-Shedding|skit/i],
+  ["Meeting", /meeting/i]
+];
+LOG.forEach((r, i) => { r.n = i + 1; r.tags = TAGS.filter(t => r.a.some(x => t[1].test(x))).map(t => t[0]); });
+
+const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+const esc = s => s.replace(/[&<>]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;" }[c]));
+
+
+/* ---------- Logbook ---------- */
+const state = { week: 0, tag: "" };
+function pillGroup(host, opts, key) {
+  host.innerHTML = "";
+  opts.forEach(o => {
+    const b = el("button", "pill", o.label);
+    b.type = "button";
+    b.setAttribute("aria-pressed", String(state[key] === o.value));
+    b.addEventListener("click", () => { state[key] = o.value; pillGroup(host, opts, key); renderLog(); });
+    host.appendChild(b);
+  });
+}
+function renderLog() {
+  const rows = LOG.filter(r => (!state.week || r.w === state.week) && (!state.tag || r.tags.includes(state.tag)));
+  const host = document.getElementById("logRows");
+  host.innerHTML = "";
+  rows.forEach(r => {
+    const f = fmt(r.d);
+    const row = el("article", "log-row");
+    row.innerHTML =
+      `<div class="when"><b>Day ${r.n}</b><span>${f.dow}, ${f.day} ${f.mon} 2026</span></div>` +
+      `<div><span class="lab">Activities performed</span><ul>${r.a.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>` +
+      `<div><span class="lab">Skills developed</span><ul class="skills">${r.s.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>` +
+      `<div class="hrs"><span class="lab">Hours</span>Three hours</div>`;
+    host.appendChild(row);
+  });
+}
+pillGroup(document.getElementById("weekFilter"),
+  [{ label: "All weeks", value: 0 }].concat([1,2,3,4,5].map(w => ({ label: "Week " + w, value: w }))), "week");
+renderLog();
+
+/* ---------- Weekly evidence ---------- */
+const P = n => "images/" + n + ".jpg";
+const WEEKS = [
+  { n:1, dates:"14 – 18 September 2026", focus:"Nouns, Present Simple, Be verbs, Subject and Object Pronouns",
+    teach:[[P("w1-teach-1"),"Teaching pronoun examples at the whiteboard"],[P("w1-teach-2"),"Explaining example sentences from the coursebook"],[P("w1-teach-3"),"Guiding the class through pronoun practice"]],
+    act:[[P("w1-activity-1"),"Students presenting their “All About Me” posters"]] },
+  { n:2, dates:"21 – 25 September 2026", focus:"Articles, Demonstrative Pronouns, Possessive Adjectives, Adjectives",
+    teach:[[P("w2-teach-1"),"Projector-based pronoun surprise test"],[P("w2-teach-2"),"The class working through the on-screen quiz"]],
+    act:[[P("w2-activity-1"),"Students sharing their illustrated notebook work"],[P("w2-activity-2"),"Notebook drawings with the class"]] },
+  { n:3, dates:"28 September – 2 October 2026", focus:"Adverbs, Question Mark, interrogative sentences, revision and the midterm assessment",
+    teach:[[P("w3-teach-1"),"Grammar lesson with picture-based coursebook exercises"],[P("w3-teach-2"),"Writing on the board while students complete coursebook tasks"],[P("w3-teach-3"),"Checking in with students during coursebook practice"]],
+    act:[] },
+  { n:4, dates:"5 – 9 October 2026", focus:"Present Continuous, Exclamatory Sentences, Prepositions, “There”, Simple Past, auditorium rehearsals",
+    teach:[[P("w4-teach-1"),"Week 4 teaching photo 1"],[P("w4-teach-2"),"Week 4 teaching photo 2"],[P("w4-teach-3"),"Week 4 teaching photo 3"],[P("w4-teach-4"),"Week 4 teaching photo 4"]], act:[] },
+  { n:5, dates:"12 – 19 October 2026", focus:"Modal verb “can”, revision, the skit performance, final assessment and certificate ceremony",
+    teach:[], act:[] }
+];
+const ALL = [];
+function gallery(items, label) {
+  const wrap = el("div");
+  if (label) wrap.appendChild(el("p", "sub", label));
+  if (!items.length) { wrap.appendChild(el("div", "empty", "Photos will be added here.")); return wrap; }
+  const g = el("div", "gallery");
+  items.forEach(it => {
+    const idx = ALL.length; ALL.push({ src: it[0], cap: it[1] });
+    const fig = el("figure", "shot");
+    const b = el("button"); b.type = "button"; b.setAttribute("aria-label", "Enlarge photo: " + it[1]);
+    const img = el("img"); img.src = it[0]; img.alt = it[1]; img.loading = "lazy";
+    b.appendChild(img); b.addEventListener("click", () => openLb(idx));
+    fig.appendChild(b);
+    g.appendChild(fig);
+  });
+  wrap.appendChild(g); return wrap;
+}
+const weeksHost = document.getElementById("weeks");
+WEEKS.filter(w => w.n <= 4).forEach(w => {
+  const box = el("div", "week");
+  const head = el("div", "week-head", `<h3>Week ${w.n}</h3>`);
+  box.appendChild(head);
+  box.appendChild(gallery(w.teach, "Teaching photos"));
+  if (w.act.length) box.appendChild(gallery(w.act, "Student activity photos"));
+  weeksHost.appendChild(box);
+});
+
+document.getElementById("finalGallery").appendChild(gallery([[P("final-1"),"Final Assessment photo 1"],[P("final-2"),"Final Assessment photo 2"],[P("final-3"),"Final Assessment photo 3"]], ""));
+
+document.getElementById("skitGallery").appendChild(gallery([[P("skit-1"),"Skit performance photo 1"],[P("skit-2"),"Skit performance photo 2"],[P("skit-3"),"Skit performance photo 3"],[P("skit-4"),"Skit performance photo 4"],[P("skit-5"),"Skit performance photo 5"],[P("skit-6"),"Skit performance photo 6"],[P("skit-7"),"Skit performance photo 7"],[P("skit-8"),"Skit performance photo 8"],[P("skit-9"),"Skit performance photo 9"],[P("skit-10"),"Skit performance photo 10"]], ""));
+
+/* ---------- Lightbox ---------- */
+let cur = 0;
+const lb = document.getElementById("lb"), lbImg = document.getElementById("lbImg"), lbCap = document.getElementById("lbCap");
+function showLb() { lbImg.src = ALL[cur].src; lbImg.alt = ALL[cur].cap; lbCap.textContent = ""; }
+function openLb(i) { cur = i; showLb(); lb.hidden = false; document.getElementById("lbClose").focus(); }
+function closeLb() { lb.hidden = true; }
+document.getElementById("lbClose").addEventListener("click", closeLb);
+document.getElementById("lbPrev").addEventListener("click", () => { cur = (cur - 1 + ALL.length) % ALL.length; showLb(); });
+document.getElementById("lbNext").addEventListener("click", () => { cur = (cur + 1) % ALL.length; showLb(); });
+lb.addEventListener("click", e => { if (e.target === lb) closeLb(); });
+document.addEventListener("keydown", e => {
+  if (lb.hidden) return;
+  if (e.key === "Escape") closeLb();
+  if (e.key === "ArrowRight") document.getElementById("lbNext").click();
+  if (e.key === "ArrowLeft") document.getElementById("lbPrev").click();
+});
+
+/* ---------- Journals ---------- */
+const REFL = {
+ 1: { r: "During the first week of my internship, I experienced the practical responsibilities of an English language teacher. I taught basic grammatical concepts, including nouns, the present simple tense, be-verbs, subject pronouns, and object pronouns. I incorporated speaking drills, reading comprehension, writing exercises, and listening activities to engage learners. I also observed experienced teachers and attended a meeting with the management to discuss effective teaching strategies. These experiences helped me understand the importance of lesson planning, classroom interaction, and adapting instruction to students' language proficiency.",
+   l: "I learned that teaching English to beginners requires patience, clear instructions, and continuous reinforcement. Classroom observations helped me recognize different teaching styles, pronunciation techniques, and approaches to managing students. I also understood how grammatical knowledge from Applied Linguistics can be transformed into practical classroom instruction.",
+   n: "I will make my lessons more interactive by incorporating additional pair activities, visual materials, and short speaking tasks. I will also focus on providing clearer instructions and encouraging hesitant students to participate more confidently." },
+ 2: { r: "During the second week, I focused on developing students' grammatical accuracy, vocabulary, and communicative competence. I taught articles, demonstratives, countable and uncountable nouns, possessive adjectives, and adjectives. I introduced interactive activities such as the Silent Guess Game, My Favourite Things, and a debate on village life versus city life. Alongside regular teaching, I began developing a short English skit entitled The Great Summer Load-Shedding. This experience encouraged me to explore creative approaches to language teaching beyond traditional textbook exercises.",
+   l: "I learned that students become more engaged when language is presented through meaningful activities rather than memorization alone. Games, discussions, and speaking tasks encouraged learners to use English in practical situations. I also realized that creative performance activities can support vocabulary development, pronunciation, and learner confidence.",
+   n: "I will provide more opportunities for independent speaking and collaborative learning. I will also give individual attention to students who experience pronunciation difficulties and encourage them to practise their skit dialogues with appropriate expression and fluency." },
+ 3: { r: "During the third week, I taught adverbs and interrogative sentences while engaging students in reading comprehension and grammar exercises. I also organized interactive activities, including the Word Chain Game and sentence-making exercises, to strengthen vocabulary and sentence construction. As the midterm assessment approached, I revised previously taught grammatical concepts and evaluated students' understanding through a formal test. I subsequently checked examination papers and reviewed their academic performance. Meanwhile, regular skit rehearsals allowed me to observe students' progress in spoken English.",
+   l: "I learned that assessment is an essential part of effective language teaching because it helps identify learners' strengths and areas requiring improvement. Checking students' answer scripts enabled me to recognize common grammatical errors and understand the importance of constructive feedback. I also learned that regular revision improves students' retention and prepares them for formal assessments.",
+   n: "I will use students' assessment performance to identify grammatical weaknesses and provide targeted practice. I will also introduce more communicative activities to help students apply their grammatical knowledge in everyday conversations." },
+ 4: { r: "During the fourth week, I taught the present continuous tense, exclamatory sentences, prepositions, the use of there, and the simple past tense. I incorporated running dictation, rapid-fire drills, spelling activities, worksheets, and paired speaking tasks to reinforce language learning. I also conducted a projector-based surprise test to evaluate students' progress. Alongside these classroom activities, I organized skit rehearsals in the auditorium, focusing on dialogue delivery, pronunciation, stage confidence, and coordination among students.",
+   l: "I learned that communicative language teaching becomes more effective when learners actively participate in meaningful tasks. Running dictation and paired discussions encouraged cooperation, listening, and spontaneous language production. The skit rehearsals also demonstrated how performance-based learning can reduce speaking hesitation and help students develop confidence in using English before an audience.",
+   n: "I will focus on consolidating students' learning through comprehensive revision and individual feedback. I will also work on improving their pronunciation, voice projection, and stage presence so they can perform confidently during the final presentation." },
+ 5: { r: "The final week of my internship was particularly meaningful because it reflected the progress my students and I had made throughout the teaching experience. I taught the modal verb can, revised third-person singular verb forms, and conducted a comprehensive revision of the coursebook in preparation for the final examination. On 15 October, my students successfully presented The Great Summer Load-Shedding, receiving appreciation from the teaching faculty. I subsequently conducted the final assessment, evaluated answer scripts, prepared results, and participated in the certificate distribution ceremony. My internship concluded with a meeting with the Officer In-Charge, who appreciated my efforts and awarded me an internship certificate.",
+   l: "I learned that successful teaching is not limited to completing a syllabus; it also involves developing students' confidence, communication skills, and willingness to participate. Witnessing my students perform successfully was an encouraging outcome of consistent practice and guidance. The final assessment and professional feedback also helped me recognize my development in classroom management, lesson delivery, language assessment, and student engagement.",
+   n: "In my future teaching practice, I will focus on differentiated instruction, regular formative assessment, and activity-based learning. I will continue improving my classroom management, pronunciation instruction, and feedback strategies. Most importantly, I will strive to create a supportive learning environment where students feel confident expressing themselves in English." }
+};
+let jw = 1;
+function renderJournal() {
+  const tabs = document.getElementById("jTabs"); tabs.innerHTML = "";
+  WEEKS.forEach(w => {
+    const b = el("button", "pill", "Week " + w.n); b.type = "button"; b.setAttribute("role", "tab");
+    b.setAttribute("aria-selected", String(jw === w.n)); b.setAttribute("aria-pressed", String(jw === w.n));
+    b.addEventListener("click", () => { jw = w.n; renderJournal(); });
+    tabs.appendChild(b);
+  });
+  const w = WEEKS[jw - 1];
+  const p = document.getElementById("jPanel");
+  p.innerHTML = `<h3>Week ${w.n}</h3>` +
+    `<h4>Reflection of the day</h4><p>${esc(REFL[w.n].r)}</p>` +
+    `<h4>What did I learn today?</h4><p>${esc(REFL[w.n].l)}</p>` +
+    `<h4>What can I do differently tomorrow?</h4><p>${esc(REFL[w.n].n)}</p>`;
+}
+renderJournal();
+
+/* ---------- Contact ---------- */
+(function () {
+  const box = document.getElementById("contactBox");
+  const rows = [];
+  if (CONTACT.email) rows.push(["Email", CONTACT.email, "mailto:" + CONTACT.email, true]);
+  if (CONTACT.phone) rows.push(["Phone", CONTACT.phone, "tel:" + CONTACT.phone, true]);
+  if (CONTACT.linkedin) rows.push(["LinkedIn", CONTACT.linkedin, CONTACT.linkedin, false]);
+  if (!rows.length) {
+    box.innerHTML = "";
+    return;
+  }
+  rows.forEach(r => {
+    const row = el("div", "contact-row", `<span class="label">${r[0]}</span><span class="val">${esc(r[1])}</span>`);
+    const a = el("a", "btn ghost", "Open"); a.href = r[2]; a.target = "_blank"; a.rel = "noopener"; row.appendChild(a);
+    if (r[3]) {
+      const c = el("button", "btn", "Copy"); c.type = "button";
+      c.addEventListener("click", () => {
+        const done = () => { c.textContent = "Copied"; setTimeout(() => c.textContent = "Copy", 1600); };
+        try { navigator.clipboard.writeText(r[1]).then(done, () => { c.textContent = "Select and copy"; }); } catch (e) { c.textContent = "Select and copy"; }
+      });
+      row.appendChild(c);
+    }
+    box.appendChild(row);
+  });
+})();
+
+(function () {
+  const days = LOG.length, hours = days * HOURS_PER_DAY;
+  const items = [[hours, "Hours logged"], [days, "Days completed"]];
+  document.querySelectorAll(".stats").forEach(d => { d.innerHTML = items.map(i => `<div><dt>${i[1]}</dt><dd>${i[0]}</dd></div>`).join(""); });
+  const hc = document.getElementById("heroContact");
+  if (hc && CONTACT.email) {
+    const sp = document.createElement("span"); sp.textContent = CONTACT.email; hc.appendChild(sp);
+    const c = document.createElement("button"); c.type = "button"; c.className = "btn"; c.textContent = "Copy";
+    c.addEventListener("click", () => {
+      const done = () => { c.textContent = "Copied"; setTimeout(() => { c.textContent = "Copy"; }, 1600); };
+      try { navigator.clipboard.writeText(CONTACT.email).then(done, () => { c.textContent = "Select and copy"; }); } catch (e) { c.textContent = "Select and copy"; }
+    });
+    hc.appendChild(c);
+  }
+})();
+
+/* ---------- Polish: theme button, typing, reveal, back to top, active menu ---------- */
+(function () {
+  const root = document.documentElement;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const btn = document.getElementById("themeBtn");
+  const sysDark = () => matchMedia("(prefers-color-scheme: dark)").matches;
+  const current = () => root.getAttribute("data-theme") || (sysDark() ? "dark" : "light");
+  function label() {
+    const d = current() === "dark";
+    btn.textContent = d ? "Light mode" : "Dark mode";
+    btn.setAttribute("aria-label", d ? "Switch to light theme" : "Switch to dark theme");
+  }
+  try { const t = localStorage.getItem("theme"); if (t === "dark" || t === "light") root.setAttribute("data-theme", t); } catch (e) {}
+  label();
+  btn.addEventListener("click", () => {
+    const n = current() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", n);
+    try { localStorage.setItem("theme", n); } catch (e) {}
+    label();
+  });
+
+  const tl = document.getElementById("tagline");
+  const full = tl.textContent;
+  tl.setAttribute("aria-label", full);
+  if (!reduce) {
+    tl.innerHTML = '<span class="ghost" aria-hidden="true"></span><span class="typed" aria-hidden="true"></span>';
+    tl.children[0].textContent = full;
+    const typed = tl.children[1];
+    let i = 0;
+    const tick = () => {
+      i++; typed.textContent = full.slice(0, i);
+      if (i < full.length) setTimeout(tick, 55); else setTimeout(() => tl.classList.add("done"), 1500);
+    };
+    setTimeout(tick, 400);
+  }
+
+  if ("IntersectionObserver" in window && !reduce) {
+    root.classList.add("js-reveal");
+    const secs = document.querySelectorAll("main > section:not(.hero)");
+    secs.forEach(s => s.classList.add("reveal"));
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }), { rootMargin: "0px 0px -6% 0px" });
+    secs.forEach(s => io.observe(s));
+  }
+
+  const topBtn = document.getElementById("toTop");
+  const nav = document.querySelector("nav.main");
+  const links = Array.from(nav.querySelectorAll("a"));
+  const secEls = links.map(a => document.querySelector(a.getAttribute("href")));
+  let active = -1;
+  function onScroll() {
+    topBtn.classList.toggle("show", window.scrollY > 700);
+    let idx = -1;
+    secEls.forEach((s, i) => { if (s && s.getBoundingClientRect().top <= 140) idx = i; });
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) idx = links.length - 1;
+    if (idx === active) return;
+    active = idx;
+    links.forEach((a, i) => {
+      a.classList.toggle("active", i === idx);
+      if (i === idx) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+    });
+    if (idx >= 0) {
+      const left = links[idx].getBoundingClientRect().left - nav.getBoundingClientRect().left + nav.scrollLeft - 60;
+      nav.scrollTo({ left: Math.max(0, left), behavior: reduce ? "auto" : "smooth" });
+    }
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+  topBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" }));
+})();
+</script>
+
+</body>
+</html>
